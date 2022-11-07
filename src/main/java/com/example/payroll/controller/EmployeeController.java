@@ -2,9 +2,7 @@ package com.example.payroll.controller;
 
 import java.util.List;
 
-import com.example.payroll.entity.Employee;
-import com.example.payroll.exception.EmployeeNotFoundException;
-import com.example.payroll.repository.EmployeeRepository;
+import com.example.payroll.model.Employee;
 import com.example.payroll.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

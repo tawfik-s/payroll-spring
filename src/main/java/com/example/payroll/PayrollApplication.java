@@ -1,7 +1,8 @@
 package com.example.payroll;
 
-import com.example.payroll.entity.Employee;
+import com.example.payroll.model.Employee;
 import com.example.payroll.repository.EmployeeRepository;
+import com.example.payroll.repository.handlers.EmployeeEventHandler;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,5 +24,10 @@ public class PayrollApplication {
 		};
 	}
 
+
+	@Bean
+	EmployeeEventHandler employeeEventHandler(){
+		return new EmployeeEventHandler();
+	}
 
 }

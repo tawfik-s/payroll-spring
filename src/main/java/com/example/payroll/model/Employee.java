@@ -1,15 +1,18 @@
-package com.example.payroll.entity;
+package com.example.payroll.model;
 
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
 
     private @Id @GeneratedValue Long id;
+
+    @NotNull
     private String name;
     private String role;
 

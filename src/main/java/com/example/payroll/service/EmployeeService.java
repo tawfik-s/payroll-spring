@@ -1,6 +1,6 @@
 package com.example.payroll.service;
 
-import com.example.payroll.entity.Employee;
+import com.example.payroll.model.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
