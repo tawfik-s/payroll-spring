@@ -42,21 +42,28 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task getTaskById(long id) {
-        return null;
+       return taskRepository.findById(id).get();
     }
 
     @Override
     public List<Task> getTasks() {
-        return null;
+       return taskRepository.findAll();
     }
 
     @Override
     public void deleteTask(long id) {
-
+        taskRepository.deleteById(id);
     }
 
     @Override
     public Task updateTask(Task task, long id) {
-        return null;
+        return taskRepository.findById(id).map(newTask->{
+            newTask.setDescription(task.getDescription());
+            newTask.setHours(task.getHours());
+            return taskRepository.save(newTask);
+        }).orElseGet(()->{
+            task.setId(id);
+            return taskRepository.save(task);
+        });
     }
 }
