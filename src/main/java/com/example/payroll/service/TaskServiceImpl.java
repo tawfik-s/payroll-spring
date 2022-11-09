@@ -10,7 +10,9 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -65,5 +67,15 @@ public class TaskServiceImpl implements TaskService {
             task.setId(id);
             return taskRepository.save(task);
         });
+    }
+
+    @Override
+    public List<Task> getEmployeeTasks(long employee_id) {
+        Optional<Employee>emp=employeeRepository.findById(employee_id);
+        if(emp.isPresent()){
+            return emp.get().getTasks();
+        }else{
+            return new ArrayList<>();
+        }
     }
 }

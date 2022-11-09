@@ -12,4 +12,6 @@ public interface TaskService {
     public List<Task> getTasks();
     public void deleteTask(long id);
     public Task updateTask(Task task,long id);
+
+    public List<Task> getEmployeeTasks(long  employee_id);
 }
