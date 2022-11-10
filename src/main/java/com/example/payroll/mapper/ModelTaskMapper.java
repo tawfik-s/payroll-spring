@@ -11,6 +11,7 @@ public interface ModelTaskMapper {
 
     @Mapping(target = "description",source = "taskDto.description")
     @Mapping(target="hours", source="taskDto.hours")
+    @Mapping(target = "status",source = "taskDto.status")
     Task taskDtoToEntity(TaskWithUserIdDto taskDto);
 
 }
