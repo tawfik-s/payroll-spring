@@ -15,7 +15,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class Employee {
 
-    private @Id @GeneratedValue Long id;
+     @Id
+     @GeneratedValue(strategy = GenerationType.AUTO)
+     private Long id;
 
     @NotNull
     private String name;

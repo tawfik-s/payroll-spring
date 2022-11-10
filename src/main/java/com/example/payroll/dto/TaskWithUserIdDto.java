@@ -21,4 +21,6 @@ public class TaskWithUserIdDto {
 
     private String hours;
 
+    private String status;
+
 }
