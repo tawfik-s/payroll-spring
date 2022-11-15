@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.payroll.entity.Employee;
 import com.example.payroll.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 class EmployeeController {
@@ -27,16 +31,24 @@ class EmployeeController {
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/employees")
-    List<Employee> all() {
+    List<Employee> index() {
 
         return employeeService.getEmployees();
     }
     // end::get-aggregate-root[]
 
     @PostMapping("/employees")
-    Employee newEmployee(@RequestBody Employee newEmployee) {
-        System.out.println(newEmployee);
-        return employeeService.addEmployee(newEmployee);
+    Employee newEmployee(@RequestBody Employee newEmployee, HttpServletResponse httpResponse,
+                         WebRequest request) {
+        Employee emp=employeeService.addEmployee(newEmployee);
+        System.out.println(emp);
+        if(emp==null){
+            httpResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        }
+        httpResponse.setStatus(HttpStatus.CREATED.value());
+        httpResponse.setHeader("Location", String.format("%s/employees/%s",
+                request.getContextPath(), emp.getId()));
+        return emp;
     }
 
 
