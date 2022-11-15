@@ -45,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
          if(tasks!=null){
              taskRepository.saveAll(tasks);
          }
-         return repository.saveAndFlush(employee);
+         return repository.save(employee);
     }
 
     @Override
